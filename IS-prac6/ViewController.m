@@ -103,10 +103,35 @@
 
 - (IBAction)prac6_12:(id)sender
 {
+    NSMutableArray *a = [NSMutableArray array];
+    [a addObjectsFromArray:@[@"Webアプリ開発I",@"Webアプリ開発II",@"iOSアプリ開発",@"iOSアプリ開発"]];
+    [self indexOf:@"Web" fromArray:a];
+    [self indexOf:@"Webアプリ開発I" fromArray:a];
+    [self indexOf:@"iOSアプリ開発" fromArray:a];
+}
+
+- (NSInteger)indexOf:(NSString*)search fromArray:(NSArray*)from
+{
+    NSInteger index = [from indexOfObject:search];
+    if (index != NSNotFound) {
+        NSLog(@"index=%d",index);
+    } else {
+        NSLog(@"not found");
+    }
+    return index;
 }
 
 - (IBAction)prac6_13:(id)sender
 {
+    NSArray *courses = @[@"Webアプリ開発I",@"Webアプリ開発II",@"iOSアプリ開発"];
+    courses = [courses sortedArrayUsingSelector:@selector(compare:)];
+    for (NSString *course in courses) {
+        NSLog(@"%@",course);
+    }
+    courses = [courses sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"" ascending:NO]]];
+    for (NSString *course in courses) {
+        NSLog(@"%@",course);
+    }
 }
 
 @end
